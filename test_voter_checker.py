@@ -1,4 +1,5 @@
 import unittest
+import voter_checker
 from voter_checker import is_eligible_to_vote
 
 
@@ -17,4 +18,5 @@ class TestVoterEligibility(unittest.TestCase):
         self.assertFalse(is_eligible_to_vote(18, False))
 
     def test_negative_age(self):
-        self.assertRaises(is_eligible_to_vote(-30, True))
+        with self.assertRaises(ValueError):
+            voter_checker.is_eligible_to_vote(-18, True)
